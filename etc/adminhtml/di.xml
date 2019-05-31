@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- Plugins -->
+    <!-- Adds additional data to the orders grid collection -->
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <plugin name="mageworx_extended_orders_grid_add_data_to_orders_grid"
+                type="MageWorx\ExtendedOrdersGrid\Plugin\AddDataToOrdersGrid"
+                sortOrder="10"
+                disabled="false"/>
+    </type>
+</config>
