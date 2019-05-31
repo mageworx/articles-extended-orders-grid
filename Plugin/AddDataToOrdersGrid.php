@@ -12,28 +12,20 @@ namespace MageWorx\ExtendedOrdersGrid\Plugin;
 class AddDataToOrdersGrid
 {
     /**
-     * @var \Magento\Framework\App\State
-     */
-    private $appState;
-
-    /**
      * @var \Psr\Log\LoggerInterface
      */
     private $logger;
 
     /**
-     * AddDeliveryDateDataToOrdersGrid constructor.
+     * AddDataToOrdersGrid constructor.
      *
-     * @param \Magento\Framework\App\State $appState
      * @param \Psr\Log\LoggerInterface $customLogger
      * @param array $data
      */
     public function __construct(
-        \Magento\Framework\App\State $appState,
         \Psr\Log\LoggerInterface $customLogger,
         array $data = []
     ) {
-        $this->appState = $appState;
         $this->logger   = $customLogger;
     }
 
@@ -50,11 +42,6 @@ class AddDataToOrdersGrid
         }
 
         if ($collection->getMainTable() === $collection->getResource()->getTable('sales_order_grid')) {
-            if ($this->appState->getMode() == \Magento\Framework\App\State::MODE_DEVELOPER) {
-                $sqlDump = $collection->getSelectSql(true);
-                $a = 0;
-            }
-
             try {
                 $orderAddressTableName = $collection->getResource()->getTable('sales_order_address');
                 $directoryCountryRegionTableName = $collection->getResource()->getTable('directory_country_region');
@@ -72,11 +59,6 @@ class AddDataToOrdersGrid
                 // Do nothing in that case
                 $this->logger->log(100, $selectException);
             }
-        }
-
-        if ($this->appState->getMode() == \Magento\Framework\App\State::MODE_DEVELOPER) {
-            $sqlDump = $collection->getSelectSql(true);
-            $a = 0;
         }
 
         return $collection;
