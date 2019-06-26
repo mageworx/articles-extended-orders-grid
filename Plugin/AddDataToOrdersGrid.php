@@ -46,13 +46,13 @@ class AddDataToOrdersGrid
                 $orderAddressTableName = $collection->getResource()->getTable('sales_order_address');
                 $directoryCountryRegionTableName = $collection->getResource()->getTable('directory_country_region');
                 $collection->getSelect()->joinLeft(
-                    ['soa' => $orderAddressTableName],
-                    'soa.parent_id = main_table.entity_id AND soa.address_type = \'shipping\'',
+                    ['soat' => $orderAddressTableName],
+                    'soat.parent_id = main_table.entity_id AND soat.address_type = \'shipping\'',
                     null
                 );
                 $collection->getSelect()->joinLeft(
                     ['dcrt' => $directoryCountryRegionTableName],
-                    'soa.region_id = dcrt.region_id',
+                    'soat.region_id = dcrt.region_id',
                     ['code']
                 );
             } catch (\Zend_Db_Select_Exception $selectException) {
