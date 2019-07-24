@@ -26,7 +26,7 @@ class AddDataToOrdersGrid
         \Psr\Log\LoggerInterface $customLogger,
         array $data = []
     ) {
-        $this->logger   = $customLogger;
+        $this->logger = $customLogger;
     }
 
     /**
@@ -43,7 +43,7 @@ class AddDataToOrdersGrid
 
         if ($collection->getMainTable() === $collection->getResource()->getTable('sales_order_grid')) {
             try {
-                $orderAddressTableName = $collection->getResource()->getTable('sales_order_address');
+                $orderAddressTableName           = $collection->getResource()->getTable('sales_order_address');
                 $directoryCountryRegionTableName = $collection->getResource()->getTable('directory_country_region');
                 $collection->getSelect()->joinLeft(
                     ['soat' => $orderAddressTableName],
