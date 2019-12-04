@@ -48,7 +48,7 @@ class AddDataToOrdersGrid
                 $collection->getSelect()->joinLeft(
                     ['soat' => $orderAddressTableName],
                     'soat.parent_id = main_table.entity_id AND soat.address_type = \'shipping\'',
-                    null
+                    ['telephone']
                 );
                 $collection->getSelect()->joinLeft(
                     ['dcrt' => $directoryCountryRegionTableName],
